@@ -106,7 +106,6 @@ body {
     border: 2px solid #22222f;
     background-color: #121218;
     transform: scale(1.2);
-    /* Parte ingrandita per l'effetto dezoom */
     transition: transform 0.1s ease-out;
 }
 
@@ -130,14 +129,24 @@ body {
 
 .magic-title {
     font-family: 'Anton', sans-serif;
-    font-size: 3.5rem;
+    font-size: 2.8rem;
     color: #ffffff;
     text-transform: uppercase;
-    margin: 0;
+    margin: 0 0 10px 0;
     opacity: 0;
     transform: scale(0.8);
     transition: transform 0.1s ease-out, opacity 0.1s ease-out;
     letter-spacing: 1px;
+}
+
+.quote-author {
+    color: #00ff66;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    opacity: 0.9;
 }
 
 /* Sezione Progetti */
