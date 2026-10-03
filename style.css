@@ -10,6 +10,7 @@ body {
     color: #f1f1f3;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 /* Navbar fissa in alto */
@@ -65,7 +66,7 @@ body {
     background-color: #fff;
 }
 
-/* Sezione Hero stile Lando Norris (Titoli giganti) */
+/* Sezione Hero */
 .hero {
     padding: 180px 40px 80px 40px;
     max-width: 1200px;
@@ -106,18 +107,19 @@ body {
     padding-bottom: 15px;
 }
 
-/* Card Progetti in stile racing */
+/* Card Progetti con impostazioni iniziali per l'effetto zoom allo scroll */
 .project-card {
     background-color: #121218;
     border: 1px solid #22222f;
     border-radius: 8px;
     padding: 40px;
-    margin-bottom: 30px;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    margin-bottom: 40px;
+    transform: scale(0.85);
+    opacity: 0.2;
+    transition: transform 0.1s ease-out, opacity 0.2s ease-out, border-color 0.3s ease;
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
     border-color: #00ff66;
 }
 
@@ -170,22 +172,4 @@ footer {
 footer a {
     color: #00ff66;
     text-decoration: none;
-}
-
-.project-card {
-    background-color: #121218;
-    border: 1px solid #22222f;
-    border-radius: 8px;
-    padding: 40px;
-    margin-bottom: 40px;
-    /* Proprietà iniziali per l'effetto scroll zoom */
-    transform: scale(0.85);
-    opacity: 0.2;
-    transition: transform 0.1s ease-out, opacity 0.2s ease-out, border-color 0.3s ease;
-}
-
-.project-card:hover {
-    transform: scale(1.02) !important;
-    /* Leggero zoom extra al passaggio del mouse */
-    border-color: #00ff66;
 }

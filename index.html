@@ -10,43 +10,27 @@
 
 <body>
 
-    <!-- Header in stile Navbar fissa -->
+    <!-- Navbar fissa in alto -->
     <header class="nav-bar">
         <div class="logo">MARIO ROVAGNATI</div>
         <div class="nav-links">
             <a href="#progetti">Progetti</a>
-            <a href="#chi-sono">Bio</a>
             <a href="mailto:mariorovagnati010604@gmail.com" class="cta-btn">Contattami</a>
         </div>
     </header>
 
-    <!-- Sezione Hero ad alto impatto (stile Lando Norris) -->
+    <!-- Sezione Hero ad alto impatto -->
     <section class="hero">
         <h1 class="glitch-text">INFORMATICA. SVILUPPO. PASSIONE.</h1>
         <p>Studente di Informatica per la Comunicazione Digitale — UNIMI</p>
     </section>
 
-    <!-- Sezione Progetti -->
+    <!-- Sezione Progetti Dinamica (Collegata a GitHub) -->
     <section id="progetti" class="projects-section">
         <h2>I Miei Lavori</h2>
-
-        <div class="project-card">
-            <div class="project-info">
-                <span class="tag">E-commerce / Backend</span>
-                <h3>iBuy</h3>
-                <p>Piattaforma e-commerce completa con database PostgreSQL, autenticazione JWT e server Node.js.</p>
-                <a href="https://github.com/mariorova" target="_blank" class="link-arrow">Esplora Repository &rarr;</a>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <div class="project-info">
-                <span class="tag">Web App / API</span>
-                <h3>Social Network for Music (SN4M)</h3>
-                <p>Web application per la gestione di playlist e community musicali con integrazione delle API di
-                    Spotify.</p>
-                <a href="https://github.com/mariorova" target="_blank" class="link-arrow">Esplora Repository &rarr;</a>
-            </div>
+        <div id="github-projects-container">
+            <!-- I repository verranno caricati automaticamente qui -->
+            <p style="color: #71717a;">Caricamento dei progetti da GitHub in corso...</p>
         </div>
     </section>
 
@@ -56,32 +40,79 @@
                 href="https://linkedin.com/in/mario-rovagnati-5625a4258/" target="_blank">LinkedIn</a></p>
     </footer>
 
-    <!-- Script per l'effetto zoom allo scroll -->
+    <!-- Script per caricare i progetti da GitHub e gestire lo zoom allo scroll -->
     <script>
-        window.addEventListener('scroll', () => {
+        async function fetchGitHubProjects() {
+            const username = 'mariorova'; // Il tuo username GitHub
+            const container = document.getElementById('github-projects-container');
+
+            try {
+                const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated`);
+                const repos = await response.json();
+
+                container.innerHTML = '';
+
+                // Filtra escludendo il repository del portfolio e i fork
+                const filteredRepos = repos.filter(repo => repo.name !== 'portfolio' && !repo.fork);
+
+                if (filteredRepos.length === 0) {
+                    container.innerHTML = '<p>Nessun progetto trovato.</p>';
+                    return;
+                }
+
+                filteredRepos.forEach(repo => {
+                    const card = document.createElement('div');
+                    card.className = 'project-card';
+
+                    card.innerHTML = `
+                        <div class="project-info">
+                            <span class="tag">${repo.language || 'Software'}</span>
+                            <h3>${repo.name}</h3>
+                            <p>${repo.description || 'Nessuna descrizione disponibile per questo repository.'}</p>
+                            <a href="${repo.html_url}" target="_blank" class="link-arrow">Esplora Repository &rarr;</a>
+                        </div>
+                    `;
+
+                    container.appendChild(card);
+                });
+
+                // Attiva l'effetto di zoom dopo il caricamento
+                initScrollZoom();
+
+            } catch (error) {
+                console.error("Errore nel recupero dei progetti:", error);
+                container.innerHTML = '<p style="color: #ff3333;">Impossibile caricare i progetti in questo momento.</p>';
+            }
+        }
+
+        function initScrollZoom() {
             const cards = document.querySelectorAll('.project-card');
 
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const windowHeight = window.innerHeight;
+            function handleScroll() {
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
 
-                // Calcola quanto la card è visibile nello schermo
-                if (rect.top < windowHeight && rect.bottom > 0) {
-                    // Calcola una percentuale di scorrimento (da 0.8 a 1.0)
-                    let progress = (windowHeight - rect.top) / windowHeight;
-                    progress = Math.min(Math.max(progress, 0), 1); // Mantieni tra 0 e 1
+                    if (rect.top < windowHeight && rect.bottom > 0) {
+                        let progress = (windowHeight - rect.top) / windowHeight;
+                        progress = Math.min(Math.max(progress, 0), 1);
 
-                    // Effetto zoom progressivo (parte da 0.85 e arriva a 1.0)
-                    let scale = 0.85 + (progress * 0.15);
-                    let opacity = progress;
+                        let scale = 0.85 + (progress * 0.15);
+                        let opacity = progress;
 
-                    card.style.transform = `scale(${scale})`;
-                    card.style.opacity = opacity;
-                }
-            });
-        });
+                        card.style.transform = `scale(${scale})`;
+                        card.style.opacity = opacity;
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Esegui subito per la posizione iniziale
+        }
+
+        // Avvia il recupero dati all'avvio
+        fetchGitHubProjects();
     </script>
-
 </body>
 
 </html>
