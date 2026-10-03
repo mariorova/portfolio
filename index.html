@@ -19,17 +19,27 @@
         </div>
     </header>
 
-    <!-- Sezione Hero ad alto impatto -->
+    <!-- Sezione Hero -->
     <section class="hero">
         <h1 class="glitch-text">INFORMATICA. SVILUPPO. PASSIONE.</h1>
         <p>Studente di Informatica per la Comunicazione Digitale — UNIMI</p>
+    </section>
+
+    <!-- Sezione Immagine con effetto Dezoom allo scroll -->
+    <section class="image-scroll-section">
+        <div class="image-container" id="zoom-image-box">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop"
+                alt="Esempio Sviluppo" class="contoured-image">
+            <div class="image-caption">
+                <h2 class="magic-title">CODICE, CREATIVITÀ E PERFORMANCE</h2>
+            </div>
+        </div>
     </section>
 
     <!-- Sezione Progetti Dinamica (Collegata a GitHub) -->
     <section id="progetti" class="projects-section">
         <h2>I Miei Lavori</h2>
         <div id="github-projects-container">
-            <!-- I repository verranno caricati automaticamente qui -->
             <p style="color: #71717a;">Caricamento dei progetti da GitHub in corso...</p>
         </div>
     </section>
@@ -40,10 +50,11 @@
                 href="https://linkedin.com/in/mario-rovagnati-5625a4258/" target="_blank">LinkedIn</a></p>
     </footer>
 
-    <!-- Script per caricare i progetti da GitHub e gestire lo zoom allo scroll -->
+    <!-- Script per gestire l'effetto dezoom dell'immagine, la comparsa della scritta e lo zoom dei progetti -->
     <script>
+        // Caricamento automatico progetti da GitHub
         async function fetchGitHubProjects() {
-            const username = 'mariorova'; // Il tuo username GitHub
+            const username = 'mariorova';
             const container = document.getElementById('github-projects-container');
 
             try {
@@ -51,8 +62,6 @@
                 const repos = await response.json();
 
                 container.innerHTML = '';
-
-                // Filtra escludendo il repository del portfolio e i fork
                 const filteredRepos = repos.filter(repo => repo.name !== 'portfolio' && !repo.fork);
 
                 if (filteredRepos.length === 0) {
@@ -63,7 +72,6 @@
                 filteredRepos.forEach(repo => {
                     const card = document.createElement('div');
                     card.className = 'project-card';
-
                     card.innerHTML = `
                         <div class="project-info">
                             <span class="tag">${repo.language || 'Software'}</span>
@@ -72,12 +80,10 @@
                             <a href="${repo.html_url}" target="_blank" class="link-arrow">Esplora Repository &rarr;</a>
                         </div>
                     `;
-
                     container.appendChild(card);
                 });
 
-                // Attiva l'effetto di zoom dopo il caricamento
-                initScrollZoom();
+                initScrollAnimations();
 
             } catch (error) {
                 console.error("Errore nel recupero dei progetti:", error);
@@ -85,10 +91,38 @@
             }
         }
 
-        function initScrollZoom() {
+        function initScrollAnimations() {
+            const imageBox = document.getElementById('zoom-image-box');
+            const magicTitle = document.querySelector('.magic-title');
             const cards = document.querySelectorAll('.project-card');
 
             function handleScroll() {
+                const scrollY = window.scrollY;
+
+                // 1. Effetto Dezoom dell'immagine e comparsa/zoom della scritta magica
+                if (imageBox) {
+                    const rect = imageBox.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+
+                    if (rect.top <= windowHeight && rect.bottom >= 0) {
+                        let progress = (windowHeight - rect.top) / (windowHeight + rect.height);
+                        progress = Math.min(Math.max(progress, 0), 1);
+
+                        // L'immagine fa il dezoom (parte grande 1.2 e scende a 1.0)
+                        let imgScale = 1.2 - (progress * 0.2);
+                        imageBox.style.transform = `scale(${imgScale})`;
+
+                        // La scritta compare e fa l'effetto zoom inverso (cresce man mano che scorri)
+                        let titleScale = 0.8 + (progress * 0.3);
+                        let titleOpacity = progress * 1.5;
+                        if (magicTitle) {
+                            magicTitle.style.transform = `scale(${titleScale})`;
+                            magicTitle.style.opacity = titleOpacity;
+                        }
+                    }
+                }
+
+                // 2. Effetto Zoom progressivo per le card dei progetti
                 cards.forEach(card => {
                     const rect = card.getBoundingClientRect();
                     const windowHeight = window.innerHeight;
@@ -107,10 +141,9 @@
             }
 
             window.addEventListener('scroll', handleScroll);
-            handleScroll(); // Esegui subito per la posizione iniziale
+            handleScroll();
         }
 
-        // Avvia il recupero dati all'avvio
         fetchGitHubProjects();
     </script>
 </body>

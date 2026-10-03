@@ -68,7 +68,7 @@ body {
 
 /* Sezione Hero */
 .hero {
-    padding: 180px 40px 80px 40px;
+    padding: 180px 40px 60px 40px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -91,10 +91,59 @@ body {
     letter-spacing: 1px;
 }
 
+/* Sezione Immagine con contorno e transizione dezoom */
+.image-scroll-section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 40px;
+    overflow: hidden;
+}
+
+.image-container {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #22222f;
+    background-color: #121218;
+    transform: scale(1.2);
+    /* Parte ingrandita per l'effetto dezoom */
+    transition: transform 0.1s ease-out;
+}
+
+.contoured-image {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.8);
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px;
+    background: linear-gradient(0deg, rgba(11, 11, 14, 0.95) 0%, rgba(11, 11, 14, 0) 100%);
+    text-align: center;
+}
+
+.magic-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 3.5rem;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin: 0;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+    letter-spacing: 1px;
+}
+
 /* Sezione Progetti */
 .projects-section {
     max-width: 1200px;
-    margin: 40px auto;
+    margin: 80px auto 40px auto;
     padding: 0 40px;
 }
 
@@ -107,7 +156,7 @@ body {
     padding-bottom: 15px;
 }
 
-/* Card Progetti con impostazioni iniziali per l'effetto zoom allo scroll */
+/* Card Progetti con effetto zoom allo scroll */
 .project-card {
     background-color: #121218;
     border: 1px solid #22222f;
