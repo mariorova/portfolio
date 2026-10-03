@@ -1,115 +1,173 @@
-/* Importiamo un font moderno e geometrico (ispirato al tech/gaming) */
-@import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Inter:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
 
 body {
-    font-family: 'Inter', sans-serif, system-ui;
-    background-color: #0a0a0c;
-    /* Nero profondo / carbonio */
-    color: #ededed;
+    font-family: 'Inter', sans-serif;
+    background-color: #0b0b0e;
+    color: #f1f1f3;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
 }
 
-/* Header con forte impatto visivo */
-header {
-    padding: 100px 20px 50px 20px;
-    text-align: center;
-    background: linear-gradient(180deg, #16161a 0%, #0a0a0c 100%);
-    border-bottom: 2px solid #1f1f26;
+/* Navbar fissa in alto */
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(11, 11, 14, 0.9);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #1a1a22;
 }
 
-header h1 {
-    font-family: 'Teko', sans-serif;
-    /* Stile corsaiolo/futuristico */
-    font-size: 5rem;
-    font-weight: 700;
-    margin: 0;
-    letter-spacing: 2px;
-    color: #ffffff;
-    text-transform: uppercase;
-}
-
-header p {
-    font-size: 1.2rem;
-    color: #00ff66;
-    /* Verde fluo in stile racing/gaming */
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-section {
-    max-width: 900px;
-    margin: 60px auto;
-    padding: 0 20px;
-}
-
-h2 {
-    font-family: 'Teko', sans-serif;
-    font-size: 2.8rem;
+.logo {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.5rem;
     letter-spacing: 1px;
     color: #ffffff;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-    border-left: 5px solid #00ff66;
-    padding-left: 15px;
 }
 
-p {
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a {
     color: #a1a1aa;
-    font-size: 1.1rem;
-    line-height: 1.6;
-}
-
-/* Progetti in stile "Card Motorsport / Tech" */
-.project {
-    background-color: #121216;
-    border: 1px solid #272730;
-    border-radius: 12px;
-    padding: 30px;
-    margin-bottom: 25px;
-    position: relative;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Effetto scatto/accelerazione al passaggio del mouse */
-.project:hover {
-    border-color: #00ff66;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 255, 102, 0.1);
-}
-
-.project h3 {
-    margin-top: 0;
-    color: #ffffff;
-    font-size: 1.6rem;
-    font-weight: 700;
-}
-
-/* Pulsanti e link in stile racing */
-a {
-    color: #00ff66;
     text-decoration: none;
     font-weight: 600;
-    text-transform: uppercase;
     font-size: 0.9rem;
-    letter-spacing: 1px;
-    display: inline-block;
-    margin-top: 10px;
     transition: color 0.2s;
 }
 
-a:hover {
+.nav-links a:hover {
+    color: #00ff66;
+}
+
+.cta-btn {
+    background-color: #00ff66;
+    color: #0b0b0e !important;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 900 !important;
+    text-transform: uppercase;
+}
+
+.cta-btn:hover {
+    background-color: #fff;
+}
+
+/* Sezione Hero stile Lando Norris (Titoli giganti) */
+.hero {
+    padding: 180px 40px 80px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-family: 'Anton', sans-serif;
+    font-size: 5.5rem;
+    line-height: 0.95;
+    text-transform: uppercase;
     color: #ffffff;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    color: #00ff66;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Sezione Progetti */
+.projects-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 40px;
+}
+
+.projects-section h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: 3rem;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #1a1a22;
+    padding-bottom: 15px;
+}
+
+/* Card Progetti in stile racing */
+.project-card {
+    background-color: #121218;
+    border: 1px solid #22222f;
+    border-radius: 8px;
+    padding: 40px;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: #00ff66;
+}
+
+.tag {
+    background-color: rgba(0, 255, 102, 0.1);
+    color: #00ff66;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-radius: 4px;
+}
+
+.project-card h3 {
+    font-size: 2rem;
+    margin: 15px 0 10px 0;
+    color: #fff;
+}
+
+.project-card p {
+    color: #a1a1aa;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin-bottom: 25px;
+}
+
+.link-arrow {
+    color: #00ff66;
+    text-decoration: none;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.link-arrow:hover {
+    color: #fff;
     text-decoration: underline;
 }
 
+/* Footer */
 footer {
     text-align: center;
-    padding: 60px 20px;
-    background-color: #050507;
-    border-top: 1px solid #1f1f26;
+    padding: 60px;
+    background-color: #070709;
+    border-top: 1px solid #1a1a22;
     color: #71717a;
     font-size: 0.9rem;
+}
+
+footer a {
+    color: #00ff66;
+    text-decoration: none;
 }

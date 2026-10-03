@@ -4,40 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mario Rovagnati - Portfolio</title>
+    <title>Mario Rovagnati — Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
-        <h1>Mario Rovagnati</h1>
-        <p>Studente di Informatica per la Comunicazione Digitale - UNIMI</p>
+
+    <!-- Header in stile Navbar fissa -->
+    <header class="nav-bar">
+        <div class="logo">MARIO ROVAGNATI</div>
+        <div class="nav-links">
+            <a href="#progetti">Progetti</a>
+            <a href="#chi-sono">Bio</a>
+            <a href="mailto:mariorovagnati010604@gmail.com" class="cta-btn">Contattami</a>
+        </div>
     </header>
 
-    <section>
-        <h2>Chi sono</h2>
-        <p>Benvenuto nel mio portfolio! Sono uno studente con una forte passione per lo sviluppo web, i database e la
-            crittografia.</p>
+    <!-- Sezione Hero ad alto impatto (stile Lando Norris) -->
+    <section class="hero">
+        <h1 class="glitch-text">INFORMATICA. SVILUPPO. PASSIONE.</h1>
+        <p>Studente di Informatica per la Comunicazione Digitale — UNIMI</p>
     </section>
 
-    <section>
-        <h2>I miei Progetti</h2>
-        <div class="project">
-            <h3>iBuy (E-commerce & API REST)</h3>
-            <p>Piattaforma di e-commerce con database PostgreSQL, autenticazione JWT e server Node.js.</p>
-            <a href="https://github.com/mariorova" target="_blank">Visualizza su GitHub</a>
+    <!-- Sezione Progetti -->
+    <section id="progetti" class="projects-section">
+        <h2>I Miei Lavori</h2>
+
+        <div class="project-card">
+            <div class="project-info">
+                <span class="tag">E-commerce / Backend</span>
+                <h3>iBuy</h3>
+                <p>Piattaforma e-commerce completa con database PostgreSQL, autenticazione JWT e server Node.js.</p>
+                <a href="https://github.com/mariorova" target="_blank" class="link-arrow">Esplora Repository &rarr;</a>
+            </div>
         </div>
-        <div class="project">
-            <h3>Social Network for Music (SN4M)</h3>
-            <p>Web app per la gestione di playlist e comunità musicali con integrazione delle API di Spotify.</p>
-            <a href="https://github.com/mariorova" target="_blank">Visualizza su GitHub</a>
+
+        <div class="project-card">
+            <div class="project-info">
+                <span class="tag">Web App / API</span>
+                <h3>Social Network for Music (SN4M)</h3>
+                <p>Web application per la gestione di playlist e community musicali con integrazione delle API di
+                    Spotify.</p>
+                <a href="https://github.com/mariorova" target="_blank" class="link-arrow">Esplora Repository &rarr;</a>
+            </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>Contatti: mariorovagnati010604@gmail.com | <a href="https://linkedin.com/in/mario-rovagnati-5625a4258/"
-                target="_blank">LinkedIn</a></p>
+        <p>© 2026 Mario Rovagnati. Tutti i diritti riservati. | <a
+                href="https://linkedin.com/in/mario-rovagnati-5625a4258/" target="_blank">LinkedIn</a></p>
     </footer>
+
 </body>
 
 </html>
