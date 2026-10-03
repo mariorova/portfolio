@@ -56,6 +56,32 @@
                 href="https://linkedin.com/in/mario-rovagnati-5625a4258/" target="_blank">LinkedIn</a></p>
     </footer>
 
+    <!-- Script per l'effetto zoom allo scroll -->
+    <script>
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.project-card');
+
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                // Calcola quanto la card è visibile nello schermo
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    // Calcola una percentuale di scorrimento (da 0.8 a 1.0)
+                    let progress = (windowHeight - rect.top) / windowHeight;
+                    progress = Math.min(Math.max(progress, 0), 1); // Mantieni tra 0 e 1
+
+                    // Effetto zoom progressivo (parte da 0.85 e arriva a 1.0)
+                    let scale = 0.85 + (progress * 0.15);
+                    let opacity = progress;
+
+                    card.style.transform = `scale(${scale})`;
+                    card.style.opacity = opacity;
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>
