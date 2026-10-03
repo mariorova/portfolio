@@ -46,11 +46,13 @@ body {
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
-    transition: color 0.2s;
+    position: relative;
+    transition: color 0.25s ease, transform 0.25s ease;
 }
 
 .nav-links a:hover {
-    color: #00ff66;
+    color: #00ff66 !important;
+    transform: translateY(-2px);
 }
 
 .cta-btn {
@@ -60,10 +62,13 @@ body {
     border-radius: 4px;
     font-weight: 900 !important;
     text-transform: uppercase;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cta-btn:hover {
-    background-color: #fff;
+    background-color: #ffffff;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
 }
 
 /* Sezione Hero */
@@ -210,11 +215,13 @@ body {
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
+    display: inline-block;
+    transition: transform 0.25s ease, color 0.25s ease;
 }
 
 .link-arrow:hover {
-    color: #fff;
-    text-decoration: underline;
+    color: #ffffff !important;
+    transform: translateX(5px);
 }
 
 /* Footer */
@@ -230,48 +237,10 @@ footer {
 footer a {
     color: #00ff66;
     text-decoration: none;
-}
-
-/* Effetto interattivo per tutti i link cliccabili e pulsanti del sito */
-a {
-    position: relative;
     transition: color 0.25s ease, transform 0.25s ease;
 }
 
-/* Quando passi sopra ai link del menu o del testo */
-.nav-links a:hover,
 footer a:hover {
-    color: #00ff66 !important;
-    transform: translateY(-2px);
-    /* Leggero scatto verso l'alto in stile racing */
-}
-
-/* Stile ed effetto hover per il pulsante principale CONTATTAMI */
-.cta-btn {
-    background-color: #00ff66;
-    color: #0b0b0e !important;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-weight: 900 !important;
-    text-transform: uppercase;
-    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.cta-btn:hover {
-    background-color: #ffffff;
-    transform: scale(1.05);
-    /* Effetto zoom reattivo del bottone */
-    box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
-}
-
-/* Effetto dinamico per le frecce e i link dei repository */
-.link-arrow {
-    display: inline-block;
-    transition: transform 0.25s ease, color 0.25s ease;
-}
-
-.link-arrow:hover {
     color: #ffffff !important;
-    transform: translateX(5px);
-    /* La freccia scatta in avanti verso destra al passaggio del mouse */
+    transform: translateY(-2px);
 }
