@@ -76,6 +76,8 @@ body {
     padding: 180px 40px 60px 40px;
     max-width: 1200px;
     margin: 0 auto;
+    text-align: center;
+    /* <-- QUESTO CENTRA TUTTO IL TESTO NELLA HERO (TITOLO E SCRITTA VERDE) */
 }
 
 .hero h1 {
@@ -94,6 +96,8 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
+    text-align: center;
+    /* <-- Centra solo la scritta verde */
 }
 
 /* Sezione Immagine con contorno e transizione dezoom */
