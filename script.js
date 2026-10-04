@@ -19,14 +19,16 @@ async function fetchGitHubProjects() {
             const card = document.createElement('div');
             card.className = 'project-card';
 
-            // Esempio: se vuoi associare un'anteprima specifica a un progetto, 
-            // puoi personalizzarla qui in base al nome del repository (es. repo.name === 'nome-repo')
-            // Altrimenti lasciamo uno spazio per la demo visiva.
             let previewHTML = '';
-            if (repo.name === 'iBuy') {
-                // Esempio di anteprima video/GIF per un progetto specifico
-                previewHTML = `<div class="project-preview"><video src="assets/ibuy-demo.mp4" autoplay loop muted playsinline></video></div>`;
+
+            // Controlla se il repository è SN4M e inserisce il video dalla cartella assets
+            if (repo.name === 'SN4M') {
+                previewHTML = `<div class="project-preview"><video src="assets/SN4M_test.mp4" autoplay loop muted playsinline></video></div>`;
             }
+            // Se in futuro aggiungi un video per un altro progetto, puoi fare così:
+            // else if (repo.name === 'iBuy') {
+            //     previewHTML = `<div class="project-preview"><video src="assets/ibuy-demo.mp4" autoplay loop muted playsinline></video></div>`;
+            // }
 
             card.innerHTML = `
                 ${previewHTML}
