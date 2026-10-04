@@ -22,8 +22,11 @@ async function fetchGitHubProjects() {
             let previewSectionHTML = '';
             let previewButtonHTML = '';
 
-            // Se il repository è SN4M, prepariamo il box video nascosto e il pulsante per attivarlo
-            if (repo.name === 'SN4M') {
+            // Controlla se il nome o la descrizione contengono "SN4M" (case-insensitive)
+            const repoNameUpper = repo.name.toUpperCase();
+            const repoDesc = (repo.description || '').toUpperCase();
+
+            if (repoNameUpper.includes('SN4M') || repoDesc.includes('SN4M')) {
                 previewSectionHTML = `
                     <div class="project-preview hidden-preview" id="preview-${repo.name}">
                         <video src="assets/SN4M_test.mp4" autoplay loop muted playsinline></video>
@@ -113,4 +116,5 @@ function initScrollAnimations() {
     handleScroll();
 }
 
+// Avvia il caricamento dei progetti all'avvio
 fetchGitHubProjects();
