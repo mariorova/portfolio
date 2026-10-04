@@ -10,12 +10,24 @@
 
 <body>
 
-    <!-- Navbar fissa in alto -->
+    <!-- Navbar fissa in alto con Menu a comparsa al click/hover -->
     <header class="nav-bar">
         <div class="logo">MARIO ROVAGNATI</div>
-        <div class="nav-links">
-            <a href="#progetti">Progetti</a>
-            <a href="mailto:mariorovagnati010604@gmail.com" class="cta-btn">Contattami</a>
+
+        <!-- Icona Menu a tendina -->
+        <div class="menu-container" id="menu-container">
+            <button class="menu-icon-btn" id="menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Box a tendina con i pulsanti -->
+            <div class="dropdown-menu" id="dropdown-menu">
+                <a href="#progetti" class="menu-item-btn" onclick="closeMenu()">Progetti</a>
+                <a href="mailto:mariorovagnati010604@gmail.com" class="menu-item-btn cta-menu-btn"
+                    onclick="closeMenu()">Contattami</a>
+            </div>
         </div>
     </header>
 
@@ -25,7 +37,7 @@
         <p>Studente di Informatica per la Comunicazione Digitale — UNIMI</p>
     </section>
 
-    <!-- Sezione Immagine con effetto Dezoom allo scroll e citazione -->
+    <!-- Sezione Immagine con contorno e transizione dezoom -->
     <section class="image-scroll-section">
         <div class="image-container" id="zoom-image-box">
             <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop"

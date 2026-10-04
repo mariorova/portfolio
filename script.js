@@ -116,5 +116,38 @@ function initScrollAnimations() {
     handleScroll();
 }
 
+// Gestione del menu a tendina a scomparsa automatica fuori dal menu
+const menuBtn = document.getElementById('menu-btn');
+const dropdownMenu = document.getElementById('dropdown-menu');
+const menuContainer = document.getElementById('menu-container');
+
+if (menuBtn && dropdownMenu && menuContainer) {
+    // Apri/Chiudi al click sull'icona
+    menuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownMenu.classList.toggle('show');
+    });
+
+    // Chiudi automaticamente quando il mouse esce dal contenitore del menu
+    menuContainer.addEventListener('mouseleave', () => {
+        dropdownMenu.classList.remove('show');
+    });
+
+    // Chiudi cliccando ovunque fuori dalla navbar
+    window.addEventListener('click', () => {
+        if (dropdownMenu.classList.contains('show')) {
+            dropdownMenu.classList.remove('show');
+        }
+    });
+}
+
+// Funzione richiamata quando si clicca su una voce per chiudere il menu
+function closeMenu() {
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    if (dropdownMenu) {
+        dropdownMenu.classList.remove('show');
+    }
+}
+
 // Avvia il caricamento dei progetti all'avvio
 fetchGitHubProjects();
