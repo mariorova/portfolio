@@ -1,4 +1,4 @@
-// Caricamento automatico progetti da GitHub con anteprime video/GIF
+// Caricamento automatico progetti da GitHub con pulsante per l'anteprima video
 async function fetchGitHubProjects() {
     const username = 'mariorova';
     const container = document.getElementById('github-projects-container');
@@ -19,24 +19,31 @@ async function fetchGitHubProjects() {
             const card = document.createElement('div');
             card.className = 'project-card';
 
-            let previewHTML = '';
+            let previewSectionHTML = '';
+            let previewButtonHTML = '';
 
-            // Controlla se il repository è SN4M e inserisce il video dalla cartella assets
+            // Se il repository è SN4M, prepariamo il box video nascosto e il pulsante per attivarlo
             if (repo.name === 'SN4M') {
-                previewHTML = `<div class="project-preview"><video src="assets/SN4M_test.mp4" autoplay loop muted playsinline></video></div>`;
+                previewSectionHTML = `
+                    <div class="project-preview hidden-preview" id="preview-${repo.name}">
+                        <video src="assets/SN4M_test.mp4" autoplay loop muted playsinline></video>
+                    </div>
+                `;
+                previewButtonHTML = `
+                    <button class="preview-btn" onclick="togglePreview('${repo.name}')">Visualizza Anteprima</button>
+                `;
             }
-            // Se in futuro aggiungi un video per un altro progetto, puoi fare così:
-            // else if (repo.name === 'iBuy') {
-            //     previewHTML = `<div class="project-preview"><video src="assets/ibuy-demo.mp4" autoplay loop muted playsinline></video></div>`;
-            // }
 
             card.innerHTML = `
-                ${previewHTML}
+                ${previewSectionHTML}
                 <div class="project-info">
                     <span class="tag">${repo.language || 'Software'}</span>
                     <h3>${repo.name}</h3>
                     <p>${repo.description || 'Nessuna descrizione disponibile per questo repository.'}</p>
-                    <a href="${repo.html_url}" target="_blank" class="link-arrow">Esplora Repository &rarr;</a>
+                    <div class="project-links">
+                        <a href="${repo.html_url}" target="_blank" class="link-arrow">Esplora Repository &rarr;</a>
+                        ${previewButtonHTML}
+                    </div>
                 </div>
             `;
             container.appendChild(card);
@@ -47,6 +54,14 @@ async function fetchGitHubProjects() {
     } catch (error) {
         console.error("Errore nel recupero dei progetti:", error);
         container.innerHTML = '<p style="color: #ff3333;">Impossibile caricare i progetti in questo momento.</p>';
+    }
+}
+
+// Funzione per mostrare o nascondere l'anteprima video al click del pulsante
+function togglePreview(repoName) {
+    const previewBox = document.getElementById(`preview-${repoName}`);
+    if (previewBox) {
+        previewBox.classList.toggle('hidden-preview');
     }
 }
 
