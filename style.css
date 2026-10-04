@@ -404,3 +404,114 @@ footer a:hover {
     background-color: #ffffff;
     border-color: #ffffff;
 }
+
+/* Stili specifici per la pagina Contatti / CV */
+.contact-hero {
+    padding: 160px 40px 80px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.profile-container {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    background-color: #121218;
+    border: 1px solid #22222f;
+    border-radius: 12px;
+    padding: 60px;
+}
+
+.profile-img-box {
+    flex-shrink: 0;
+    width: 300px;
+    height: 350px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #00ff66;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9);
+}
+
+.profile-info-box h1 {
+    font-family: 'Anton', sans-serif;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 10px 0 5px 0;
+    letter-spacing: 1px;
+}
+
+.profile-info-box .subtitle {
+    font-size: 1.1rem;
+    color: #00ff66;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.bio-text p {
+    color: #a1a1aa;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.contact-details h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #22222f;
+    padding-bottom: 5px;
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact-list li {
+    color: #f1f1f3;
+    font-size: 1rem;
+}
+
+.contact-list a {
+    color: #00ff66;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.contact-list a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Responsive per schermi piccoli */
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+        padding: 30px;
+        text-align: center;
+    }
+
+    .profile-img-box {
+        width: 100%;
+        height: 300px;
+    }
+
+    .contact-list {
+        align-items: center;
+    }
+}
