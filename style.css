@@ -209,6 +209,14 @@ body {
     margin-bottom: 25px;
 }
 
+/* Contenitore flessibile per i link e pulsanti dentro la card */
+.project-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-top: 15px;
+}
+
 .link-arrow {
     color: #00ff66;
     text-decoration: none;
@@ -222,6 +230,54 @@ body {
 .link-arrow:hover {
     color: #ffffff !important;
     transform: translateX(5px);
+}
+
+/* Stato nascosto iniziale dell'anteprima video */
+.hidden-preview {
+    display: none !important;
+}
+
+/* Stile per il box video a comparsa */
+.project-preview {
+    width: 100%;
+    height: 350px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    border: 1px solid #22222f;
+    background-color: #050507;
+}
+
+.project-preview video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Mostra l'intero video senza tagliarlo */
+    display: block;
+    background-color: #000000;
+}
+
+/* Stile per il pulsante "Visualizza Anteprima" */
+.preview-btn {
+    background: transparent;
+    border: 1px solid #00ff66;
+    color: #00ff66;
+    padding: 8px 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.preview-btn:hover {
+    background-color: #00ff66;
+    color: #0b0b0e;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
 }
 
 /* Footer */
@@ -243,84 +299,4 @@ footer a {
 footer a:hover {
     color: #ffffff !important;
     transform: translateY(-2px);
-}
-
-/* Stile per il box di anteprima video/GIF dentro le card dei progetti */
-.project-preview {
-    width: 100%;
-    height: 280px;
-    border-radius: 6px;
-    overflow: hidden;
-    margin-bottom: 25px;
-    border: 1px solid #22222f;
-    background-color: #050507;
-}
-
-.project-preview video,
-.project-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: brightness(0.9);
-    transition: filter 0.3s ease;
-}
-
-.project-preview video:hover,
-.project-preview img:hover {
-    filter: brightness(1);
-}
-
-/* Contenitore flessibile per i link e pulsanti dentro la card */
-.project-links {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    margin-top: 15px;
-}
-
-/* Stato nascosto iniziale dell'anteprima video */
-.hidden-preview {
-    display: none !important;
-}
-
-/* Stile per il box video a comparsa */
-.project-preview {
-    width: 100%;
-    height: 280px;
-    border-radius: 6px;
-    overflow: hidden;
-    margin-bottom: 25px;
-    border: 1px solid #22222f;
-    background-color: #050507;
-}
-
-.project-preview video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-/* Stile per il pulsante "Visualizza Anteprima" in stile racing */
-.preview-btn {
-    background: transparent;
-    border: 1px solid #00ff66;
-    color: #00ff66;
-    padding: 8px 16px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 800;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.preview-btn:hover {
-    background-color: #00ff66;
-    color: #0b0b0e;
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
 }
