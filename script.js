@@ -22,7 +22,6 @@ async function fetchGitHubProjects() {
             let previewSectionHTML = '';
             let previewButtonHTML = '';
 
-            // Controlla se il nome o la descrizione contengono "SN4M" (case-insensitive)
             const repoNameUpper = repo.name.toUpperCase();
             const repoDesc = (repo.description || '').toUpperCase();
 
@@ -116,24 +115,41 @@ function initScrollAnimations() {
     handleScroll();
 }
 
-// Gestione del menu a tendina a scomparsa automatica fuori dal menu
+// Gestione del menu a tendina con ritardo di sicurezza per evitare la chiusura accidentale
 const menuBtn = document.getElementById('menu-btn');
 const dropdownMenu = document.getElementById('dropdown-menu');
 const menuContainer = document.getElementById('menu-container');
 
+let closeTimeout;
+
 if (menuBtn && dropdownMenu && menuContainer) {
-    // Apri/Chiudi al click sull'icona
     menuBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         dropdownMenu.classList.toggle('show');
     });
 
-    // Chiudi automaticamente quando il mouse esce dal contenitore del menu
+    // Quando il mouse esce, avvia un timer di 350ms prima di chiudere
     menuContainer.addEventListener('mouseleave', () => {
-        dropdownMenu.classList.remove('show');
+        closeTimeout = setTimeout(() => {
+            dropdownMenu.classList.remove('show');
+        }, 350);
     });
 
-    // Chiudi cliccando ovunque fuori dalla navbar
+    dropdownMenu.addEventListener('mouseleave', () => {
+        closeTimeout = setTimeout(() => {
+            dropdownMenu.classList.remove('show');
+        }, 350);
+    });
+
+    // Se il mouse rientra nel menu o nel container, annulla la chiusura
+    menuContainer.addEventListener('mouseenter', () => {
+        clearTimeout(closeTimeout);
+    });
+
+    dropdownMenu.addEventListener('mouseenter', () => {
+        clearTimeout(closeTimeout);
+    });
+
     window.addEventListener('click', () => {
         if (dropdownMenu.classList.contains('show')) {
             dropdownMenu.classList.remove('show');
