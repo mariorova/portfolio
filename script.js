@@ -1,4 +1,4 @@
-// Caricamento automatico progetti da GitHub
+// Caricamento automatico progetti da GitHub con anteprime video/GIF
 async function fetchGitHubProjects() {
     const username = 'mariorova';
     const container = document.getElementById('github-projects-container');
@@ -18,7 +18,18 @@ async function fetchGitHubProjects() {
         filteredRepos.forEach(repo => {
             const card = document.createElement('div');
             card.className = 'project-card';
+
+            // Esempio: se vuoi associare un'anteprima specifica a un progetto, 
+            // puoi personalizzarla qui in base al nome del repository (es. repo.name === 'nome-repo')
+            // Altrimenti lasciamo uno spazio per la demo visiva.
+            let previewHTML = '';
+            if (repo.name === 'iBuy') {
+                // Esempio di anteprima video/GIF per un progetto specifico
+                previewHTML = `<div class="project-preview"><video src="assets/ibuy-demo.mp4" autoplay loop muted playsinline></video></div>`;
+            }
+
             card.innerHTML = `
+                ${previewHTML}
                 <div class="project-info">
                     <span class="tag">${repo.language || 'Software'}</span>
                     <h3>${repo.name}</h3>
@@ -44,7 +55,6 @@ function initScrollAnimations() {
     const cards = document.querySelectorAll('.project-card');
 
     function handleScroll() {
-        // 1. Effetto Dezoom dell'immagine e comparsa/zoom della scritta magica
         if (imageBox) {
             const rect = imageBox.getBoundingClientRect();
             const windowHeight = window.innerHeight;
@@ -65,7 +75,6 @@ function initScrollAnimations() {
             }
         }
 
-        // 2. Effetto Zoom progressivo per le card dei progetti
         cards.forEach(card => {
             const rect = card.getBoundingClientRect();
             const windowHeight = window.innerHeight;
@@ -87,5 +96,4 @@ function initScrollAnimations() {
     handleScroll();
 }
 
-// Avvia il caricamento dei progetti all'avvio
 fetchGitHubProjects();

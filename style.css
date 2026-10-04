@@ -244,3 +244,29 @@ footer a:hover {
     color: #ffffff !important;
     transform: translateY(-2px);
 }
+
+/* Stile per il box di anteprima video/GIF dentro le card dei progetti */
+.project-preview {
+    width: 100%;
+    height: 280px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    border: 1px solid #22222f;
+    background-color: #050507;
+}
+
+.project-preview video,
+.project-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.9);
+    transition: filter 0.3s ease;
+}
+
+.project-preview video:hover,
+.project-preview img:hover {
+    filter: brightness(1);
+}
