@@ -74,9 +74,13 @@ function initScrollAnimations() {
     const cards = document.querySelectorAll('.project-card');
 
     function handleScroll() {
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+
+        // 1. Effetto Dezoom dell'immagine e comparsa/zoom della scritta magica
         if (imageBox) {
             const rect = imageBox.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
 
             if (rect.top <= windowHeight && rect.bottom >= 0) {
                 let progress = (windowHeight - rect.top) / (windowHeight + rect.height);
@@ -94,19 +98,28 @@ function initScrollAnimations() {
             }
         }
 
-        cards.forEach(card => {
+        // Se l'utente è arrivato fino in fondo alla pagina, forziamo l'ultimo progetto ad essere perfettamente visibile
+        const isAtBottom = (window.innerHeight + window.scrollY) >= documentHeight - 20;
+
+        // 2. Effetto Zoom progressivo per le card dei progetti
+        cards.forEach((card, index) => {
             const rect = card.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
 
-            if (rect.top < windowHeight && rect.bottom > 0) {
-                let progress = (windowHeight - rect.top) / windowHeight;
-                progress = Math.min(Math.max(progress, 0), 1);
+            if (isAtBottom && index === cards.length - 1) {
+                // Se siamo in fondo, forza l'ultimo progetto al 100%
+                card.style.transform = `scale(1)`;
+                card.style.opacity = '1';
+            } else {
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    let progress = (windowHeight - rect.top) / windowHeight;
+                    progress = Math.min(Math.max(progress, 0), 1);
 
-                let scale = 0.85 + (progress * 0.15);
-                let opacity = progress;
+                    let scale = 0.85 + (progress * 0.15);
+                    let opacity = progress;
 
-                card.style.transform = `scale(${scale})`;
-                card.style.opacity = opacity;
+                    card.style.transform = `scale(${scale})`;
+                    card.style.opacity = opacity;
+                }
             }
         });
     }
